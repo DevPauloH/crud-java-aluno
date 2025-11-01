@@ -5,5 +5,3 @@ package br.com.devph.crudaluno.main;
 public class Main {
 
         }
-    }
-}
