@@ -62,8 +62,23 @@ public class AlunoDAO {
                 stmt.setInt(2, aluno.getIdade());
                 stmt.setString(3, aluno.getEmail());
                 stmt.setInt(4, aluno.getId());
-                stmt.executeUpdate();
+                stmt.execute();
                 System.out.println("Dados do aluno alterados com sucesso!");
+
+            } catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }
+
+
+
+        public void excluir(Aluno aluno) {
+            String sql = "DELETE FROM aluno WHERE id = ?";
+
+            try(Connection conn = conexao.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)){
+                stmt.setInt(1, aluno.getId());
+                stmt.execute();
 
             } catch (SQLException e){
                 throw new RuntimeException(e);
