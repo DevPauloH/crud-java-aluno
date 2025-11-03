@@ -72,13 +72,14 @@ public class AlunoDAO {
 
 
 
-        public void excluir(Aluno aluno) {
+        public void excluir(int id) {
             String sql = "DELETE FROM aluno WHERE id = ?";
 
             try(Connection conn = conexao.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)){
-                stmt.setInt(1, aluno.getId());
+                stmt.setInt(1, id);
                 stmt.execute();
+                System.out.println("Dados do aluno removidos com sucesso!");
 
             } catch (SQLException e){
                 throw new RuntimeException(e);
