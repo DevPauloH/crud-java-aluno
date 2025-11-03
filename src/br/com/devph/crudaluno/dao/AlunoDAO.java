@@ -49,8 +49,25 @@ public class AlunoDAO {
             throw new RuntimeException(e);
         }
             return lista;
+    }
+
+
+
+        public void atualizar(Aluno aluno) {
+            String sql = "UPDATE aluno SET nome = ?, idade = ?, email = ? WHERE id = ?";
+
+            try(Connection conn = conexao.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+                stmt.setString(1, aluno.getNome());
+                stmt.setInt(2, aluno.getIdade());
+                stmt.setString(3, aluno.getEmail());
+                stmt.setInt(4, aluno.getId());
+                stmt.executeUpdate();
+                System.out.println("Dados do aluno alterados com sucesso!");
+
+            } catch (SQLException e){
+                throw new RuntimeException(e);
+            }
         }
 
-
-    }
 }
